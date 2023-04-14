@@ -1,7 +1,13 @@
+"""Creation the character and assigning properties to it."""
 from random import randint
+from graphic_arts.start_game_banner import run_screensaver
 
 
 def attack(char_name: str, char_class: str) -> str:
+    """Return the size of damage to the opponent.
+
+    Note: Depending on class of character.
+    """
     if char_class == 'warrior':
         return (f'{char_name} нанёс урон противнику равный '
                 f'{5 + randint(3, 5)}')
@@ -15,6 +21,10 @@ def attack(char_name: str, char_class: str) -> str:
 
 
 def defence(char_name: str, char_class: str) -> str:
+    """Return the size of blocked damage from the damage of opponent.
+
+    Note: Depending on class of character.
+    """
     if char_class == 'warrior':
         return (f'{char_name} блокировал {10 + randint(5, 10)} урона')
     if char_class == 'mage':
@@ -25,6 +35,7 @@ def defence(char_name: str, char_class: str) -> str:
 
 
 def special(char_name: str, char_class: str) -> str:
+    """Return special feature depending on class of character."""
     if char_class == 'warrior':
         return (f'{char_name} применил специальное умение «Выносливость '
                 f'{80 + 25}»')
@@ -38,6 +49,7 @@ def special(char_name: str, char_class: str) -> str:
 
 
 def start_training(char_name: str, char_class: str) -> str:
+    """Start of the game."""
     if char_class == 'warrior':
         print(f'{char_name}, ты Воитель — отличный боец ближнего боя.')
     if char_class == 'mage':
@@ -62,6 +74,7 @@ def start_training(char_name: str, char_class: str) -> str:
 
 
 def choice_char_class() -> str:
+    """Сhoose the class of character."""
     approve_choice: str = ''
     char_class: str = ''
     while approve_choice != 'y':
@@ -83,16 +96,17 @@ def choice_char_class() -> str:
     return char_class
 
 
-def main():
-    print('Приветствую тебя, искатель приключений!')
-    print('Прежде чем начать игру...')
-    char_name: str = input('...назови себя: ')
-    print(f'Здравствуй, {char_name}! '
-          'Сейчас твоя выносливость — 80, атака — 5 и защита — 10.')
-    print('Ты можешь выбрать один из трёх путей силы:')
-    print('Воитель, Маг, Лекарь')
-    char_class: str = choice_char_class()
-    print(start_training(char_name, char_class))
+if __name__ == "__main__":
+    run_screensaver()
 
-
-main()
+    def main() -> None:
+        """Creation the character."""
+        print('Приветствую тебя, искатель приключений!')
+        print('Прежде чем начать игру...')
+        char_name: str = input('...назови себя: ')
+        print(f'Здравствуй, {char_name}! '
+              'Сейчас твоя выносливость — 80, атака — 5 и защита — 10.')
+        print('Ты можешь выбрать один из трёх путей силы:')
+        print('Воитель, Маг, Лекарь')
+        char_class: str = choice_char_class()
+        print(start_training(char_name, char_class))
